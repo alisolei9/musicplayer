@@ -1,0 +1,91 @@
+MDScreen:
+    md_bg_color: 0.08, 0.08, 0.12, 1
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "16dp"
+        spacing: "16dp"
+
+        MDLabel:
+            text: "Music Player"
+            halign: "center"
+            font_style: "H4"
+            size_hint_y: None
+            height: self.texture_size[1] + dp(8)
+
+        MDCard:
+            size_hint_y: None
+            height: "190dp"
+            padding: "16dp"
+            radius: [16, 16, 16, 16]
+            md_bg_color: 0.12, 0.12, 0.18, 1
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "12dp"
+
+                MDLabel:
+                    text: app.current_song_name
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0.95, 0.95, 0.95, 1
+
+                MDLabel:
+                    text: app.status_text
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0.75, 0.8, 1, 1
+                    font_style: "Caption"
+
+                MDProgressBar:
+                    value: app.progress_value
+                    max: 100
+
+                MDLabel:
+                    text: app.time_text
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0.85, 0.85, 0.85, 1
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "90dp"
+            spacing: "8dp"
+            padding: "8dp"
+
+            MDIconButton:
+                icon: "skip-previous"
+                icon_size: "44sp"
+                on_release: app.previous_song()
+
+            MDIconButton:
+                icon: "play-circle"
+                icon_size: "60sp"
+                theme_text_color: "Custom"
+                text_color: 0.2, 1, 0.2, 1
+                on_release: app.play_music()
+
+            MDIconButton:
+                icon: "pause-circle"
+                icon_size: "60sp"
+                theme_text_color: "Custom"
+                text_color: 1, 0.85, 0.2, 1
+                on_release: app.pause_or_resume()
+
+            MDIconButton:
+                icon: "stop-circle"
+                icon_size: "60sp"
+                theme_text_color: "Custom"
+                text_color: 1, 0.2, 0.2, 1
+                on_release: app.stop_music()
+
+            MDIconButton:
+                icon: "skip-next"
+                icon_size: "44sp"
+                on_release: app.next_song()
+
+        MDRectangleFlatButton:
+            text: "Reload music folder"
+            pos_hint: {"center_x": 0.5}
+            on_release: app.reload_library()
